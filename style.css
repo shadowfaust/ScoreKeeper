@@ -1,0 +1,891 @@
+/* =========================================
+   SCORE KEEPER - PURPLE & BLACK THEME
+   Mobile-First Responsive Design
+========================================= */
+
+:root {
+    --bg: #0d0915;
+    --panel: #171124;
+    --panel-2: #1e1630;
+
+    --purple: #a56bff;
+    --purple-bright: #bd91ff;
+    --purple-dark: #7040bd;
+
+    --text: #f7f2ff;
+    --muted: #a99dbb;
+
+    --line: rgba(193, 157, 255, 0.18);
+
+    --green: #62e6b2;
+    --red: #ff7298;
+}
+
+
+/* =========================================
+   GLOBAL STYLES
+========================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    padding: 18px 10px;
+
+    color: var(--text);
+
+    background:
+        radial-gradient(
+            ellipse at 50% -10%,
+            rgba(126, 70, 202, 0.25),
+            transparent 42%
+        ),
+        radial-gradient(
+            circle at 5% 70%,
+            rgba(91, 46, 151, 0.12),
+            transparent 28%
+        ),
+        var(--bg);
+
+    font-family: 'Outfit', sans-serif;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+
+/* =========================================
+   MAIN CONTAINER
+========================================= */
+
+.app-shell {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.topbar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin-bottom: 20px;
+}
+
+.brand-mark {
+    display: grid;
+    place-items: center;
+
+    width: 42px;
+    height: 42px;
+
+    flex-shrink: 0;
+
+    border: 1px solid rgba(189, 145, 255, 0.35);
+    border-radius: 13px;
+
+    color: var(--purple-bright);
+
+    background: linear-gradient(
+        145deg,
+        #34204e,
+        #1b122b
+    );
+
+    font-size: 23px;
+
+    box-shadow: 0 8px 28px #0005;
+}
+
+.brand-copy {
+    flex: 1;
+    min-width: 0;
+}
+
+.eyebrow {
+    margin-bottom: -5px;
+
+    color: var(--purple-bright);
+
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+h1 {
+    font-family: 'Baloo 2', cursive;
+    font-size: clamp(25px, 7vw, 43px);
+    font-weight: 800;
+    line-height: 1.1;
+}
+
+h1 span {
+    color: var(--purple-bright);
+}
+
+.reset-button {
+    flex-shrink: 0;
+
+    padding: 9px 12px;
+
+    border: 1px solid var(--line);
+    border-radius: 10px;
+
+    color: #e8dcfa;
+    background: #1b1428;
+
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.reset-button span {
+    margin-right: 4px;
+
+    color: var(--purple-bright);
+    font-size: 18px;
+}
+
+.reset-button:hover {
+    border-color: var(--purple);
+    background: #2a1c40;
+}
+
+
+/* =========================================
+   TARGET SCORE
+========================================= */
+
+.target-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 13px;
+
+    width: fit-content;
+    min-width: 210px;
+
+    margin: 0 auto 22px;
+    padding: 10px 22px;
+
+    border: 1px solid rgba(189, 145, 255, 0.3);
+    border-radius: 16px;
+
+    background: linear-gradient(
+        120deg,
+        rgba(73, 43, 111, 0.48),
+        rgba(28, 19, 43, 0.82)
+    );
+
+    box-shadow:
+        0 12px 40px #0004,
+        inset 0 1px #ffffff0c;
+}
+
+.target-label,
+.target-caption {
+    color: var(--muted);
+
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.target-card strong {
+    color: var(--purple-bright);
+
+    font-family: 'Baloo 2', cursive;
+    font-size: 38px;
+    line-height: 1;
+}
+
+
+/* =========================================
+   SCOREBOARD LAYOUT
+
+   IMPORTANT:
+   Both teams stay side by side
+   on mobile and desktop.
+========================================= */
+
+.scoreboard {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        12px
+        minmax(0, 1fr);
+
+    align-items: stretch;
+    gap: 5px;
+}
+
+
+/* =========================================
+   TEAM PANELS
+========================================= */
+
+.team-panel {
+    min-width: 0;
+
+    padding: 10px 7px;
+
+    border: 1px solid var(--line);
+    border-radius: 14px;
+
+    background: linear-gradient(
+        155deg,
+        rgba(34, 24, 51, 0.96),
+        rgba(19, 14, 29, 0.98)
+    );
+
+    box-shadow:
+        0 18px 45px #0004,
+        inset 0 1px #ffffff0a;
+
+    transition: border-color 0.25s, box-shadow 0.25s;
+}
+
+.team-panel.winner {
+    border-color: var(--green);
+
+    box-shadow:
+        0 0 0 1px #62e6b233,
+        0 0 34px #62e6b21c;
+}
+
+
+/* =========================================
+   TEAM NAME
+========================================= */
+
+.team-heading {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    margin-bottom: 10px;
+}
+
+.team-indicator {
+    width: 8px;
+    height: 8px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+    box-shadow: 0 0 12px currentColor;
+}
+
+.indicator-a {
+    color: #b58aff;
+    background: #b58aff;
+}
+
+.indicator-b {
+    color: #65d7ef;
+    background: #65d7ef;
+}
+
+.team-name {
+    width: 100%;
+    min-width: 0;
+
+    padding: 2px 0;
+
+    border: 0;
+    border-bottom: 1px dashed transparent;
+
+    outline: 0;
+
+    color: var(--text);
+    background: transparent;
+
+    font-family: 'Baloo 2', cursive;
+    font-size: clamp(13px, 3.8vw, 20px);
+    font-weight: 700;
+}
+
+.team-name:focus {
+    border-bottom-color: var(--purple);
+}
+
+.edit-hint {
+    display: none;
+}
+
+
+/* =========================================
+   SCORE DISPLAY
+========================================= */
+
+.score-card {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 90px;
+
+    border: 1px solid rgba(189, 145, 255, 0.22);
+    border-radius: 12px;
+
+    background:
+        radial-gradient(
+            ellipse at 50% 0%,
+            rgba(151, 99, 220, 0.16),
+            transparent 70%
+        ),
+        #100b19;
+}
+
+.score-number {
+    font-family: 'Baloo 2', cursive;
+    font-size: clamp(38px, 11vw, 58px);
+    font-weight: 800;
+    line-height: 1;
+
+    letter-spacing: -2px;
+}
+
+.score-unit {
+    margin-top: 4px;
+
+    color: #8d7e9f;
+
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+
+/* =========================================
+   PROGRESS BAR
+========================================= */
+
+.progress-track {
+    height: 6px;
+
+    margin-top: 12px;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    background: #30253d;
+}
+
+.progress-fill {
+    width: 0%;
+    height: 100%;
+
+    border-radius: inherit;
+
+    transition: width 0.3s ease;
+}
+
+.fill-a {
+    background: linear-gradient(
+        90deg,
+        #7545c3,
+        #c19aff
+    );
+
+    box-shadow: 0 0 12px #a56bff88;
+}
+
+.fill-b {
+    background: linear-gradient(
+        90deg,
+        #287f9d,
+        #73e1f4
+    );
+
+    box-shadow: 0 0 12px #65d7ef88;
+}
+
+.progress-caption {
+    display: flex;
+    justify-content: space-between;
+
+    margin: 6px 0 12px;
+
+    color: #8e819e;
+
+    font-size: 9px;
+}
+
+.progress-caption span {
+    color: #d9c6f5;
+    font-weight: 700;
+}
+
+
+/* =========================================
+   BUTTON SECTIONS
+========================================= */
+
+.button-section {
+    margin-top: 13px;
+}
+
+.button-label {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+
+    margin-bottom: 9px;
+
+    color: #a99bb9;
+
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+.button-label span {
+    color: var(--purple-bright);
+
+    font-size: 16px;
+    line-height: 1;
+}
+
+.subtract-section .button-label span {
+    color: var(--red);
+}
+
+
+/* =========================================
+   SCORE BUTTON GRID
+========================================= */
+
+.score-buttons {
+    display: grid;
+
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 4px;
+}
+
+.score-btn {
+    display: grid;
+    place-items: center;
+
+    min-width: 0;
+    min-height: 42px;
+
+    padding: 2px;
+
+    border: 1px solid rgba(189, 145, 255, 0.2);
+    border-radius: 7px;
+
+    color: #eee5fa;
+
+    background: linear-gradient(
+        145deg,
+        #2b2040,
+        #21182f
+    );
+
+    font-family: 'Baloo 2', cursive;
+    font-size: clamp(14px, 4.5vw, 20px);
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.15s,
+        border-color 0.15s,
+        background 0.15s;
+}
+
+.score-btn.plus:hover {
+    border-color: var(--purple);
+    background: #392653;
+}
+
+.score-btn.minus {
+    border-color: rgba(255, 114, 152, 0.14);
+
+    background: linear-gradient(
+        145deg,
+        #30202f,
+        #241925
+    );
+}
+
+.score-btn.minus:hover {
+    border-color: var(--red);
+    background: #422331;
+}
+
+.score-btn:active {
+    transform: scale(0.94);
+}
+
+
+/* =========================================
+   CENTER DIVIDER
+========================================= */
+
+.center-divider {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.center-divider::before,
+.center-divider::after {
+    content: '';
+
+    flex: 1;
+
+    width: 1px;
+
+    background: var(--line);
+}
+
+.center-divider span {
+    display: grid;
+    place-items: center;
+
+    width: 25px;
+    height: 25px;
+
+    flex: 0 0 25px;
+
+    margin: 8px 0;
+
+    border: 1px solid var(--line);
+    border-radius: 50%;
+
+    color: var(--purple-bright);
+    background: #1b1428;
+
+    font-size: 8px;
+    font-weight: 800;
+}
+
+
+/* =========================================
+   GAME STATUS
+========================================= */
+
+.game-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    width: fit-content;
+    max-width: 100%;
+
+    margin: 20px auto 0;
+    padding: 10px 14px;
+
+    border: 1px solid var(--line);
+    border-radius: 30px;
+
+    color: #bcb0ca;
+    background: #171122;
+
+    font-size: 11px;
+    text-align: center;
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: var(--green);
+    box-shadow: 0 0 10px var(--green);
+}
+
+.game-status.is-won {
+    border-color: #62e6b255;
+    color: #aaf4d7;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer {
+    margin-top: 25px;
+
+    color: #655872;
+
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 2px;
+
+    text-align: center;
+}
+
+
+/* =========================================
+   TOAST NOTIFICATION
+========================================= */
+
+.toast {
+    position: fixed;
+
+    left: 50%;
+    bottom: 24px;
+
+    z-index: 5;
+
+    transform: translate(-50%, 20px);
+
+    padding: 11px 17px;
+
+    border: 1px solid var(--line);
+    border-radius: 12px;
+
+    color: var(--text);
+    background: #241936;
+
+    box-shadow: 0 10px 30px #0008;
+
+    opacity: 0;
+    pointer-events: none;
+
+    transition: 0.2s;
+
+    font-size: 13px;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+
+/* =========================================
+   SMALL MOBILE DEVICES
+========================================= */
+
+@media (max-width: 380px) {
+
+    body {
+        padding: 12px 6px;
+    }
+
+    .team-panel {
+        padding: 7px 5px;
+    }
+
+    .score-card {
+        min-height: 78px;
+    }
+
+    .score-number {
+        font-size: 38px;
+    }
+
+    .score-btn {
+        min-height: 36px;
+        font-size: 14px;
+    }
+
+    .button-label {
+        font-size: 7px;
+    }
+
+    .scoreboard {
+        gap: 4px;
+    }
+}
+
+
+/* =========================================
+   TABLET AND DESKTOP
+========================================= */
+
+@media (min-width: 721px) {
+
+    body {
+        padding: 32px 20px;
+    }
+
+    .topbar {
+        gap: 14px;
+        margin-bottom: 28px;
+    }
+
+    .brand-mark {
+        width: 48px;
+        height: 48px;
+    }
+
+    .eyebrow {
+        font-size: 10px;
+        letter-spacing: 3px;
+    }
+
+    .reset-button {
+        padding: 10px 16px;
+    }
+
+    .target-card {
+        min-width: 260px;
+        margin-bottom: 34px;
+        padding: 12px 27px;
+    }
+
+    .target-card strong {
+        font-size: 44px;
+    }
+
+    .target-label,
+    .target-caption {
+        font-size: 9px;
+        letter-spacing: 1.8px;
+    }
+
+    .scoreboard {
+        grid-template-columns:
+            minmax(0, 1fr)
+            38px
+            minmax(0, 1fr);
+
+        gap: 16px;
+    }
+
+    .team-panel {
+        padding: 22px;
+        border-radius: 22px;
+    }
+
+    .team-heading {
+        gap: 9px;
+        margin-bottom: 15px;
+    }
+
+    .team-name {
+        max-width: 230px;
+        font-size: 25px;
+    }
+
+    .edit-hint {
+        display: inline;
+        color: #766889;
+        font-size: 13px;
+    }
+
+    .score-card {
+        min-height: 132px;
+        border-radius: 16px;
+    }
+
+    .score-number {
+        font-size: 78px;
+    }
+
+    .score-unit {
+        font-size: 9px;
+    }
+
+    .progress-track {
+        height: 7px;
+        margin-top: 17px;
+    }
+
+    .progress-caption {
+        margin-bottom: 19px;
+        font-size: 11px;
+    }
+
+    .button-section {
+        margin-top: 17px;
+    }
+
+    .button-label {
+        gap: 7px;
+        margin-bottom: 10px;
+        font-size: 10px;
+        letter-spacing: 1.5px;
+    }
+
+    .button-label span {
+        font-size: 17px;
+    }
+
+    .score-buttons {
+        gap: 8px;
+    }
+
+    .score-btn {
+        min-height: 49px;
+        padding: 2px;
+        border-radius: 10px;
+        font-size: 21px;
+    }
+
+    .center-divider span {
+        width: 34px;
+        height: 34px;
+        flex-basis: 34px;
+        margin: 10px 0;
+        font-size: 9px;
+    }
+
+    .game-status {
+        margin-top: 24px;
+        padding: 10px 17px;
+        font-size: 12px;
+    }
+
+    footer {
+        margin-top: 26px;
+        letter-spacing: 3px;
+
+        /* Developer Credit */
+.site-footer {
+    margin-top: 26px;
+    text-align: center;
+}
+
+.site-footer > p {
+    color: #655872;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.developer-credit {
+    margin-top: 12px;
+    color: #897b9b;
+    font-size: 12px;
+}
+
+.developer-credit span {
+    color: var(--purple-bright);
+    font-weight: 700;
+    transition: 0.2s;
+}
+
+.developer-credit span:hover {
+    color: white;
+    text-shadow: 0 0 12px var(--purple);
+}
+    }
+}

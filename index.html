@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#100b1c">
+  <title>Score Keeper</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="brand-mark" aria-hidden="true">✦</div>
+      <div class="brand-copy">
+        <p class="eyebrow">THE CARD TABLE</p>
+        <h1>Score <span>Keeper</span></h1>
+      </div>
+      <button class="reset-button" id="resetBtn" type="button" title="Reset both scores">
+        <span aria-hidden="true">↻</span> Reset
+      </button>
+    </header>
+
+    <section class="target-card" aria-label="Target score">
+      <span class="target-label">FIRST TO</span>
+      <strong id="targetScore">50</strong>
+      <span class="target-caption">POINTS TO WIN</span>
+    </section>
+
+    <section class="scoreboard" aria-label="Team score panels">
+      <article class="team-panel" id="teamAPanel" data-team="A">
+        <div class="team-heading">
+          <span class="team-indicator indicator-a"></span>
+          <input class="team-name" id="teamAName" value="Team A" maxlength="18" aria-label="Team A name">
+          <span class="edit-hint">✎</span>
+        </div>
+        <div class="score-card">
+          <span class="score-number" id="teamAScore" aria-live="polite">0</span>
+          <span class="score-unit">POINTS</span>
+        </div>
+        <div class="progress-track"><div class="progress-fill fill-a" id="teamAProgress"></div></div>
+        <p class="progress-caption"><span id="teamAPercent">0%</span> of target</p>
+        <div class="button-section">
+          <p class="button-label"><span>＋</span> ADD POINTS</p>
+          <div class="score-buttons" id="teamAPlus"></div>
+        </div>
+        <div class="button-section subtract-section">
+          <p class="button-label"><span>−</span> SUBTRACT POINTS</p>
+          <div class="score-buttons" id="teamAMinus"></div>
+        </div>
+      </article>
+
+      <div class="center-divider" aria-hidden="true"><span>VS</span></div>
+
+      <article class="team-panel" id="teamBPanel" data-team="B">
+        <div class="team-heading">
+          <span class="team-indicator indicator-b"></span>
+          <input class="team-name" id="teamBName" value="Team B" maxlength="18" aria-label="Team B name">
+          <span class="edit-hint">✎</span>
+        </div>
+        <div class="score-card">
+          <span class="score-number" id="teamBScore" aria-live="polite">0</span>
+          <span class="score-unit">POINTS</span>
+        </div>
+        <div class="progress-track"><div class="progress-fill fill-b" id="teamBProgress"></div></div>
+        <p class="progress-caption"><span id="teamBPercent">0%</span> of target</p>
+        <div class="button-section">
+          <p class="button-label"><span>＋</span> ADD POINTS</p>
+          <div class="score-buttons" id="teamBPlus"></div>
+        </div>
+        <div class="button-section subtract-section">
+          <p class="button-label"><span>−</span> SUBTRACT POINTS</p>
+          <div class="score-buttons" id="teamBMinus"></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="game-status" id="gameStatus" aria-live="polite">
+      <span class="status-dot"></span>
+      <span id="statusText">Game in progress — make your move!</span>
+    </section>
+
+   <footer class="site-footer">
+    <p>KEEP THE SCORE. OWN THE GAME.</p>
+
+    <div class="developer-credit">
+        Crafted with ♥ by
+        <span>Mishkat</span>
+    </div>
+</footer>
+  </main>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="script.js"></script>
+</body>
+</html>
